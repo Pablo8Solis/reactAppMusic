@@ -1,23 +1,10 @@
-import React, {Component, component} from 'react'
+import React from 'react'
 import MinSections from '../MIN-SECTIONS'
 
 
-class AsideLeft extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            isLoggedIn: false,
-            // se pueden meter otros metodos para el componente sino inicializar solo el estado
-        }
-    }
+const AsideLeft = () =>{
 
-    handLetButtonClick = ()=>{
-        console.log("Boton clickeado")
-        this.setState({isLoggedIn:true})
 
-    }
-
-    render(){
         return(
             <aside className= "aside-left">
                 <div className='top'></div>
@@ -53,7 +40,7 @@ class AsideLeft extends Component{
                 </div>
             </aside>
         )
-    }
+    
 };
 
 export default AsideLeft;

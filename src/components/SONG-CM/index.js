@@ -1,28 +1,18 @@
-import React, {Component, component} from 'react'
+import React from "react";
+const Songs = ({title, artist, imgSrc, alt, onAdd, hideAddButton}) => {
+    const [isAdded, setIsAdded] = React.useState(false);
 
-class Songs extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            isAdded: false, // track local add state so button can change
-            // se pueden meter otros metodos para el componente sino inicializar solo el estado
+    const handleButtonClick = () => {
+        console.log("Boton clickeado");
+        if (onAdd) {
+            onAdd();
         }
-    }
+        setIsAdded(true);
+    };
 
-    handLetButtonClick = ()=>{
-        console.log("Boton clickeado")
-        if(this.props.onAdd){
-            this.props.onAdd();
-        }
-        this.setState({isAdded:true})
-    }
-
-    render({title, artist, imgSrc, alt} = this.props){
-        const {isAdded} = this.state;
-        // if hideAddButton prop is true we don't render the button at all (used in library)
-        return(
-            <div className='box-song'>
-                <div className='box-song-content'>
+    return (
+        <div className='box-song'>
+            <div className='box-song-content'>
                 <div className='box-song-img'>
                     <img src={imgSrc} alt={alt}/>
                 </div>
@@ -30,15 +20,14 @@ class Songs extends Component{
                     <p>{title}</p>
                     <p>{artist}</p>
                 </div>
-                {!this.props.hideAddButton && (
-                    <button className='box-song-btn' onClick={this.handLetButtonClick}>
+                {!hideAddButton && (
+                    <button className='box-song-btn' onClick={handleButtonClick}>
                         {isAdded ? '✓' : '+'}
                     </button>
                 )}
-                </div>
             </div>
-        )
-    }
+        </div>
+    );
 };
 
 export default Songs;

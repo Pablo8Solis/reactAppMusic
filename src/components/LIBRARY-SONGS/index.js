@@ -1,19 +1,10 @@
-import React, {Component, component} from 'react'
+import React from "react";
 import Songs from '../SONG-CM';
 
-class Library extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            isLoggedIn: false,
-            // se pueden meter otros metodos para el componente sino inicializar solo el estado
-        }
-    }
+const Library = ({ songs }) => {
+ 
 
-
-    render(){
-        const songs = this.props.songs || [];
-        return(
+    return(
             
             <section className="library">
             <h2 className='library-title'>Tu biblioteca</h2>
@@ -22,12 +13,12 @@ class Library extends Component{
                     {songs.length > 0 ? (
                         songs.map((song, idx) => (
                             <Songs
-                              key={idx}
-                              title={song.title}
-                              artist={song.artist}
-                              imgSrc={song.img}
-                              alt={song.title}
-                              hideAddButton 
+                                key={idx}
+                                title={song.title}
+                                artist={song.artist}
+                                imgSrc={song.img}
+                                alt={song.title}
+                                hideAddButton 
                             />
                         ))
                     ) : (
@@ -37,7 +28,6 @@ class Library extends Component{
             </div>
             </section>
         )
-    }
 };
 
 export default Library;

@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { useState } from "react";
 import AsideLeft from "./components/ASIDE-L";
 import Header from "./components/HEADER";
@@ -7,6 +8,13 @@ import Library from "./components/LIBRARY-SONGS";
 function App() {
   const [view, setView] = useState("home");
   const [librarySongs, setLibrarySongs] = useState([]);
+
+  useEffect(()=>{
+    if(librarySongs.length > 0){
+      console.log("La biblioteca se ha actualizado:", librarySongs);
+    }
+})
+
 
   const addToLibrary = (song) => {
     setLibrarySongs((prev) => {
