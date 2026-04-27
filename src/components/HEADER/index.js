@@ -1,35 +1,14 @@
-import React, { useState } from 'react';
-import Songs from '../SONG-CM'
+import React from 'react';
 import CardsGen from '../GENEROS-'
 import SearchResults from '../SEARCH-RESULTS'
 
-const Header = ({ view, onGoHome, onGoLibrary, onAddLibrary }) => {
+const Header = ({ view, onGoHome, onGoLibrary, onSearch, searchResults, onAddLibrary }) => {
     const isLibrary = view === "library";
-    const [searchResults, setSearchResults] = useState([]);
-    
-    const songs = [
-        { title: "Submarine", artist: "The Marias", img: "/assets/img/submarine.webp" },
-        { title: "Mami 100pre sabe", artist: "Alvaro Díaz", img: "/assets/img/100pre.webp" },
-        { title: "Debí tirar mas fotos", artist: "Bad Bunny", img: "/assets/img/DiTM.webp" },
-        { title: "Terraza", artist: "WOS", img: "/assets/img/terraza.webp" },
-        { title: "Intro", artist: "Young Miko", img: "/assets/img/notDis.webp" },
-        { title: "No one noticed", artist: "The Marias", img: "/assets/img/noticed.webp" },
-        { title:"SISÍFO", artist: "Nsqk", img: "/assets/img/SISÍFO.jpeg" },
-    ];
 
     const handleKeyDown = (e) => {
         if (e.key !== 'Enter') return;
 
-        const value = e.target.value.trim().toLowerCase();
-        if (!value) return;
-
-        const results = songs.filter((song) =>
-            song.title.toLowerCase().includes(value) ||
-            song.artist.toLowerCase().includes(value)
-        );
-
-        setSearchResults((prevState) => [...prevState, ...results]);
-
+        onSearch(e.target.value);
         e.target.value = "";
     };
     return (

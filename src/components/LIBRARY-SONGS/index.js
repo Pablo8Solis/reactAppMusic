@@ -11,9 +11,9 @@ const Library = ({ songs }) => {
             <div className='library-content'>
                 <div className='library-content-songs'>
                     {songs.length > 0 ? (
-                        songs.map((song, idx) => (
+                        songs.map((song) => (
                             <Songs
-                                key={idx}
+                                key={`${song.title}-${song.artist}`}
                                 title={song.title}
                                 artist={song.artist}
                                 imgSrc={song.img}
