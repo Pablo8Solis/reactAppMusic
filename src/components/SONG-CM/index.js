@@ -1,7 +1,6 @@
 import React from "react";
 const Songs = ({title, artist, imgSrc, alt, onAdd, hideAddButton}) => {
     const [isAdded, setIsAdded] = React.useState(false);
-
     const handleButtonClick = () => {
         console.log("Boton clickeado");
         if (onAdd) {
@@ -9,6 +8,7 @@ const Songs = ({title, artist, imgSrc, alt, onAdd, hideAddButton}) => {
         }
         setIsAdded(true);
     };
+
 
     return (
         <div className='box-song'>

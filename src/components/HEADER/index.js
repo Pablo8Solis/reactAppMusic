@@ -1,12 +1,13 @@
 import React from 'react';
 import CardsGen from '../GENEROS-'
 import SearchResults from '../SEARCH-RESULTS'
+import SearchBar from '../SEARCH-BAR';
 
-const Header = ({ view, onGoHome, onGoLibrary, onSearch, searchResults, onAddLibrary }) => {
+const Header = ({ view, onGoHome, onGoLibrary, onSearch, searchResults, onAddLibrary, onArtistSelect, artistId }) => {
     const isLibrary = view === "library";
 
     const handleKeyDown = (e) => {
-        if (e.key !== 'Enter') return;
+            if (e.key !== 'Enter') return;
 
         onSearch(e.target.value);
         e.target.value = "";
@@ -15,7 +16,8 @@ const Header = ({ view, onGoHome, onGoLibrary, onSearch, searchResults, onAddLib
         <header className='header'>
             <section className='section-top-header'>
                 <div></div>
-                <input type="text" placeholder="Buscar Canción" onKeyDown={handleKeyDown}/>
+                {/* <input type="text" placeholder="Buscar" onKeyDown={handleKeyDown}/> */}
+                <SearchBar onArtistSelect={onArtistSelect} />
                 <div className='section-top-header-links'>
                     <span onClick={onGoHome}>Apple Music</span>
                     <span onClick={onGoLibrary}>Biblioteca</span>
@@ -25,7 +27,7 @@ const Header = ({ view, onGoHome, onGoLibrary, onSearch, searchResults, onAddLib
             {!isLibrary &&(
                 <>
                 <SearchResults
-                    searchResults={searchResults}
+                    artistId={artistId}
                     onAddLibrary={onAddLibrary}
                 />
                 <p className='header-p'>Explorar Categorías</p>

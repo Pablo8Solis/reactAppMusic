@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import AsideLeft from "./components/ASIDE-L";
 import Header from "./components/HEADER";
 import Library from "./components/LIBRARY-SONGS";
+import { Route, Routes } from "react-router-dom";
+import SearchBar from "./components/SEARCH-BAR";
+import TrackList from "./components/SONG-DETAIL";
 
 const fakeSongs = [
   { title: "Submarine", artist: "The Marias", img: "/assets/img/submarine.webp" },
@@ -12,8 +15,11 @@ const fakeSongs = [
   { title: "No one noticed", artist: "The Marias", img: "/assets/img/noticed.webp" },
   { title: "SISÍFO", artist: "Nsqk", img: "/assets/img/SISÍFO.jpeg" },
 ];
-
 function App() {
+
+  //Albumes de la API
+  const [artistId, setArtistId] = useState(null);
+   
   const [view, setView] = useState("home");
   const [searchResults, setSearchResults] = useState(fakeSongs);
   const [librarySongs, setLibrarySongs] = useState([]);
@@ -28,7 +34,7 @@ function App() {
     const value = query.trim().toLowerCase();
 
     if (!value) {
-      setSearchResults(fakeSongs);
+      setSearchResults([]);
       return;
     }
 
@@ -52,23 +58,34 @@ function App() {
 
   return (
       <div className="App">
-      <AsideLeft className="aside-left" />
-
-      {/* HEADER SIEMPRE VISIBLE */}
-      <Header
-        onGoLibrary={() => setView("library")}
-        onGoHome={() => setView("home")}
-        view={view}
-        onSearch={handleSearch}
-        searchResults={searchResults}
-        onAddLibrary={addToLibrary}
+        <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <AsideLeft className="aside-left" />
+            <Header
+              onGoLibrary={() => setView("library")}
+              onGoHome={() => setView("home")}
+              view={view}
+              onSearch={handleSearch}
+              searchResults={searchResults}
+              onAddLibrary={addToLibrary}
+              onArtistSelect={setArtistId}
+              artistId={artistId}
+            />
+            
+             {view === "library" && <Library songs={librarySongs} />}
+          </>
+        }
       />
 
-      {/* CONTENIDO VARIABLE */}
-      {view === "library" && <Library songs={librarySongs} />}
+      <Route path="/song/:id" element={<TrackList />} />
+
+      {/* ruta de song info que mostrara la informacion de las canciones seleccionadas */}
+    </Routes>
     </div>
   );
 }
 
 export default App;
-

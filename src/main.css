@@ -343,4 +343,109 @@ header .section-gen .cards-gen p {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(5, 1fr);
   }
+}
+
+.song-link {
+  color: white;
+  text-decoration: none;
+}
+
+.song-detail {
+  color: #fff;
+  padding: 5rem;
+  margin-top: 0;
+  gap: 1rem;
+  height: 100vh;
+  grid-area: 1/1/6/6;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  height: 100vh;
+  width: 100%;
+  justify-content: flex-start;
+  overflow: auto;
+}
+.song-detail .song-detail-title {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.song-detail .song-detail-artist {
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.song-detail .song-detail-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+@media screen and (max-width: 39rem) {
+  .song-detail .song-detail-content {
+    grid-template-columns: 1fr;
+  }
+}
+.song-detail .album-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.song-detail .span {
+  color: red;
+}
+.song-detail .song-detail-content-songs {
+  padding: 1.5rem;
+  background-color: rgb(45, 44, 44);
+  border-radius: 5rem;
+  width: 100%;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+.song-detail .song-detail-content-songs:hover {
+  background-color: grey;
+  color: #fff;
+  transition: ease-in-out 0.1s;
+}
+.song-detail .song-detail-img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.song-detail .album-header {
+  width: 50rem;
+  margin-left: 1rem;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding-left: 8rem;
+}
+.song-detail .song-detail-container {
+  display: flex;
+}
+.song-detail .song-detail-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+}
+.song-detail .song-detail-button-container {
+  margin-top: 14rem;
+  display: flex;
+  gap: 1rem;
+}
+.song-detail .song-detail-button {
+  background-color: rgb(45, 44, 44);
+  padding: 1rem;
+  width: 15rem;
+  border-radius: 20px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: ease-in-out 0.1s;
+}
+.song-detail .song-detail-button:hover {
+  background-color: red;
 }/*# sourceMappingURL=main.css.map */
