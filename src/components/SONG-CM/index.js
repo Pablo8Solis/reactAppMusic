@@ -1,8 +1,10 @@
 import React from "react";
+import { AddSongButton, SongCard, SongCardContent, SongCardImage, SongCardText } from "./styles";
+
 const Songs = ({title, artist, imgSrc, alt, onAdd, hideAddButton}) => {
     const [isAdded, setIsAdded] = React.useState(false);
+
     const handleButtonClick = () => {
-        console.log("Boton clickeado");
         if (onAdd) {
             onAdd();
         }
@@ -11,22 +13,22 @@ const Songs = ({title, artist, imgSrc, alt, onAdd, hideAddButton}) => {
 
 
     return (
-        <div className='box-song'>
-            <div className='box-song-content'>
-                <div className='box-song-img'>
-                    <img src={imgSrc} alt={alt}/>
+        <SongCard>
+            <SongCardContent>
+                <div>
+                    <SongCardImage src={imgSrc} alt={alt}/>
                 </div>
-                <div className='box-song-text'>
+                <SongCardText>
                     <p>{title}</p>
                     <p>{artist}</p>
-                </div>
+                </SongCardText>
                 {!hideAddButton && (
-                    <button className='box-song-btn' onClick={handleButtonClick}>
+                    <AddSongButton $isAdded={isAdded} onClick={handleButtonClick}>
                         {isAdded ? '✓' : '+'}
-                    </button>
+                    </AddSongButton>
                 )}
-            </div>
-        </div>
+            </SongCardContent>
+        </SongCard>
     );
 };
 

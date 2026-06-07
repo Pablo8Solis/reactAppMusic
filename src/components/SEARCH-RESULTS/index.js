@@ -1,20 +1,21 @@
 import React from "react";
 import Songs from "../SONG-CM";
 import useFetchAlbums from "../../Hooks/useFetchAlbums";
-import { Link } from "react-router-dom";
+import { HeaderP, SectionTopRecientes } from "../HEADER/styles";
+import { LoaderImg, SongLink } from "./styles";
 
 const SearchResults = ({ artistId, onAddLibrary }) => {
     const { albums, loading, error } = useFetchAlbums(artistId);
 
     return (
         <>
-            <p className='header-p header-p-1'>Buscados recientemente</p>
-            <section className='section-top-recientes'>
+            <HeaderP $topSpace="6.5rem">Buscados recientemente</HeaderP>
+            <SectionTopRecientes>
                 { error ? (
                     <p>Error al cargar los resultados.</p>
-                ) : loading?(<img className="loader" src="/assets/img/Loader.gif" alt="Loading" />): albums.length > 0 ? (
+                ) : loading?(<LoaderImg src="/assets/img/Loader.gif" alt="Loading" />): albums.length > 0 ? (
                     albums.map((album) => (
-                        <Link className="song-link" key={album.id || album.title} to={`/song/${album.id}`}>
+                        <SongLink key={album.id || album.title} to={`/song/${album.id}`}>
                             <Songs
                                 title={album.title}
                                 artist={album?.artist?.name || ''}
@@ -22,12 +23,12 @@ const SearchResults = ({ artistId, onAddLibrary }) => {
                                 alt={album.title}
                                 onAdd={() => onAddLibrary && onAddLibrary({ title: album.title, artist: album?.artist?.name || '', img: album.cover_medium || '' })}
                             />
-                        </Link>
+                        </SongLink>
                     ))
                 ) : (
                    <p></p>
                 )}
-            </section>
+            </SectionTopRecientes>
         </>
     );
 };

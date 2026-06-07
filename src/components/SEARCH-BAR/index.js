@@ -1,5 +1,6 @@
 import useFetchArtist from "../../Hooks/useFetchArtist";
 import { useState, useEffect } from "react";
+import { SearchInput } from "./styles";
 
 const SearchBar = ({ onArtistSelect }) =>{
     //Artista a buscar
@@ -18,11 +19,12 @@ const SearchBar = ({ onArtistSelect }) =>{
 
     return(
         <>
-        <input
+        <SearchInput
             type="text"
             placeholder="Search"
             value={artistName}
             onChange={handleInputChange}
+            $hasValue={artistName.trim().length > 0}
         />
         </>
     );

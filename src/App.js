@@ -5,6 +5,9 @@ import Library from "./components/LIBRARY-SONGS";
 import { Route, Routes } from "react-router-dom";
 import SearchBar from "./components/SEARCH-BAR";
 import TrackList from "./components/SONG-DETAIL";
+import { ThemeProvider } from "styled-components";
+import theme from "./theme";
+import GlobalStyles from "./theme/GlobalStyles";
 
 const fakeSongs = [
   { title: "Submarine", artist: "The Marias", img: "/assets/img/submarine.webp" },
@@ -57,6 +60,8 @@ function App() {
   };
 
   return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles/>
       <div className="App">
         <Routes>
       <Route
@@ -85,6 +90,7 @@ function App() {
       {/* ruta de song info que mostrara la informacion de las canciones seleccionadas */}
     </Routes>
     </div>
+    </ThemeProvider>
   );
 }
 

@@ -1,14 +1,15 @@
 import React from 'react';
+import { DivMinSection, ImgDivMinSection, MinSectionStyles, TextMinSection } from './styles';
 const MinSections = ({nameOfSection, srcOfImg, altOfImg}) =>{
 
     return(
-        <section className= "min-sections">
-            <div>
-                <img src={`${srcOfImg}`} alt={`${altOfImg}`}
+        <MinSectionStyles>
+            <DivMinSection>
+                <ImgDivMinSection src={`${srcOfImg}`} alt={`${altOfImg}`}
                 />
-                <p>{nameOfSection}</p>
-            </div>    
-        </section>
+                <TextMinSection>{nameOfSection}</TextMinSection>
+            </DivMinSection>    
+       </MinSectionStyles>
 
     )
 };

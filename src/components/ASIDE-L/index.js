@@ -1,25 +1,26 @@
 import React from 'react'
 import MinSections from '../MIN-SECTIONS'
+import { AsideLeftStyles, Button, ButtonImg, Sects, SectsP, Top } from './styles';
 
 
 const AsideLeft = () =>{
 
 
         return(
-            <aside className= "aside-left">
-                <div className='top'></div>
-                <div className='sects'>
+            <AsideLeftStyles>
+                <Top/>
+                <Sects>
                     <MinSections nameOfSection="Search" srcOfImg="/assets/img/search.svg" altOfImg="Buscar"/>
                     <MinSections nameOfSection="Home" srcOfImg="/assets/img/home.svg" altOfImg="inicio"/>
                     <MinSections nameOfSection="News" srcOfImg="/assets/img/squares.svg" altOfImg="Novedades"/>
                     <MinSections nameOfSection="Radio" srcOfImg="/assets/img/radio.svg" altOfImg="Radio"/>
-                    <p className='sects-p'>Biblioteca</p>
+                    <SectsP>Biblioteca</SectsP>
                     <MinSections nameOfSection="Recent" srcOfImg="/assets/img/recientes.svg" altOfImg="Recientes"/>
                     <MinSections nameOfSection="Artist" srcOfImg="/assets/img/artistas.svg" altOfImg="Artistas"/>
                     <MinSections nameOfSection="Albums" srcOfImg="/assets/img/albumes.svg" altOfImg="Albums"/>
                     <MinSections nameOfSection="Songs" srcOfImg="/assets/img/canciones.svg" altOfImg="Canciones"/>
                     <MinSections nameOfSection="For You" srcOfImg="/assets/img/para-ti.svg" altOfImg="Para ti"/>
-                    <p className='sects-p'>Playlist</p>
+                    <SectsP>Playlist</SectsP>
                     <MinSections nameOfSection="All Playlists" srcOfImg="/assets/img/todas-playlist.svg" altOfImg="playlist"/>
                     <MinSections nameOfSection="Favorites Songs" srcOfImg="/assets/img/favoritas.svg" altOfImg="favoritas"/>
                     <MinSections nameOfSection="Bad Bunny Essent..." srcOfImg="/assets/img/Bad.webp" altOfImg="Bad Bunny"/>
@@ -31,14 +32,14 @@ const AsideLeft = () =>{
                     <MinSections nameOfSection="Station lo-fi" srcOfImg="/assets/img/lofi.webp" altOfImg="lo-fi"/>
                     <MinSections nameOfSection="Mood Booster" srcOfImg="/assets/img/moodbooster.webp" altOfImg="Mood Booster"/>
                     <MinSections nameOfSection="New Playlist" srcOfImg="/assets/img/nueva-playlist.svg" altOfImg="Nueva Playlist"/>
-                </div>
+                </Sects>
                 <div className='button'>
-                    <div className='button-div'>
-                    <img src="/assets/img/perfil-zoo.JPG" alt="foto"/>
+                    <Button>
+                    <ButtonImg src="/assets/img/perfil-zoo.JPG" alt="foto"/>
                     <p>Pablo Solis</p>
-                    </div>
+                    </Button>
                 </div>
-            </aside>
+            </AsideLeftStyles>
         )
     
 };

@@ -1,10 +1,11 @@
 import React from "react";
+import { CardsGenImg, CardsGenSect, CardsGenP} from "./styles";
 const CardsGen = ({nameOfGen, srcOfImgGen, altOfImgGen}) =>{
     return(
-        <section className= "cards-gen">
-            <img src={`${srcOfImgGen}`} alt={`${altOfImgGen}`}/>
-            <p>{nameOfGen}</p> 
-        </section>
+        <CardsGenSect>
+            <CardsGenImg src={`${srcOfImgGen}`} alt={`${altOfImgGen}`}/>
+            <CardsGenP>{nameOfGen}</CardsGenP> 
+        </CardsGenSect>
         )
     }
 
