@@ -9,7 +9,7 @@ const SongCard = styled.div`
 
 const SongCardContent = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: rgb(84, 83, 83);
     gap: 1rem;

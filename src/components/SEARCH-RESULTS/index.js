@@ -3,17 +3,21 @@ import Songs from "../SONG-CM";
 import useFetchAlbums from "../../Hooks/useFetchAlbums";
 import { HeaderP, SectionTopRecientes } from "../HEADER/styles";
 import { LoaderImg, SongLink } from "./styles";
+import { useDispatch } from "react-redux";
+import { addSong } from "../../Redux/libraryActions";
+
 
 const SearchResults = ({ artistId, onAddLibrary }) => {
     const { albums, loading, error } = useFetchAlbums(artistId);
+    const dispatch = useDispatch();
 
     return (
         <>
             <HeaderP $topSpace="6.5rem">Buscados recientemente</HeaderP>
             <SectionTopRecientes>
-                { error ? (
+                {error ? (
                     <p>Error al cargar los resultados.</p>
-                ) : loading?(<LoaderImg src="/assets/img/Loader.gif" alt="Loading" />): albums.length > 0 ? (
+                ) : loading ? (<LoaderImg src="/assets/img/Loader.gif" alt="Loading" />) : albums.length > 0 ? (
                     albums.map((album) => (
                         <SongLink key={album.id || album.title} to={`/song/${album.id}`}>
                             <Songs
@@ -21,12 +25,19 @@ const SearchResults = ({ artistId, onAddLibrary }) => {
                                 artist={album?.artist?.name || ''}
                                 imgSrc={album.cover_medium || album.cover || ''}
                                 alt={album.title}
-                                onAdd={() => onAddLibrary && onAddLibrary({ title: album.title, artist: album?.artist?.name || '', img: album.cover_medium || '' })}
+                                onAdd={() => {
+                                    dispatch(addSong({
+                                        id: album.id,
+                                        title: album.title,
+                                        artist: album?.artist?.name || '',
+                                        imgSrc: album.cover_medium || album.cover || '',
+                                    }))
+                                }}
                             />
                         </SongLink>
                     ))
                 ) : (
-                   <p></p>
+                    <p></p>
                 )}
             </SectionTopRecientes>
         </>
