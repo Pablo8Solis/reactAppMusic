@@ -1,33 +1,38 @@
-import useFetchArtist from "../../Hooks/useFetchArtist";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSongs, resetResults } from "../../Redux/slices/searchSlice";
 import { SearchInput } from "./styles";
 
-const SearchBar = ({ onArtistSelect }) =>{
-    //Artista a buscar
+const SearchBar = () => {
     const [artistName, setArtistName] = useState("");
-    const { artist, artistId, artistName: fetchedArtistName, loading, error } = useFetchArtist(artistName);
+    const dispatch = useDispatch();
+    const loading = useSelector((state) => state.search.loading);
 
-    // Notificar al padre cuando cambie el artistId
     useEffect(() => {
-        onArtistSelect(artistId ?? null);
-    }, [artistId, onArtistSelect]);
+        const query = artistName.trim();
+        if (query) {
+            dispatch(fetchSongs(query));
+        } else {
+            dispatch(resetResults());
+        }
+    }, [artistName, dispatch]);
 
-
-    const handleInputChange = (event) =>{
+    const handleInputChange = (event) => {
         setArtistName(event.target.value);
-    }
+    };
 
-    return(
+    return (
         <>
-        <SearchInput
-            type="text"
-            placeholder="Search"
-            value={artistName}
-            onChange={handleInputChange}
-            $hasValue={artistName.trim().length > 0}
-        />
+            <SearchInput
+                type="text"
+                placeholder="Search"
+                value={artistName}
+                onChange={handleInputChange}
+                $hasValue={artistName.trim().length > 0}
+            />
+            {loading && <p style={{ color: 'white', marginTop: '10px' }}>Cargando canciones...</p>}
         </>
     );
-}
+};
 
 export default SearchBar;

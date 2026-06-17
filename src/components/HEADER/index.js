@@ -11,7 +11,7 @@ const Header = ({ view, onGoHome, onGoLibrary, onSearch, searchResults, onAddLib
             <SectionTopHeader>
                 <div></div>
                 {/* <input type="text" placeholder="Buscar" onKeyDown={handleKeyDown}/> */}
-                <SearchBar onArtistSelect={onArtistSelect} />
+                <SearchBar />
                 <SectionTopHeaderLinks>
                     <span onClick={onGoHome}>Apple Music</span>
                     <span onClick={onGoLibrary}>Biblioteca</span>
@@ -20,10 +20,7 @@ const Header = ({ view, onGoHome, onGoLibrary, onSearch, searchResults, onAddLib
 
             {!isLibrary &&(
                 <>
-                <SearchResults
-                    artistId={artistId}
-                    onAddLibrary={onAddLibrary}
-                />
+                <SearchResults />
                 <HeaderP>Explorar Categorías</HeaderP>
                 <SectionGen>
                     <CardsGen nameOfGen="Radio" srcOfImgGen="/assets/img/GenRadio.webp" altOfImgGen="Radio"/>

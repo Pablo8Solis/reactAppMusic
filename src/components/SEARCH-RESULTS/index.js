@@ -1,24 +1,24 @@
 import React from "react";
 import Songs from "../SONG-CM";
-import useFetchAlbums from "../../Hooks/useFetchAlbums";
 import { HeaderP, SectionTopRecientes } from "../HEADER/styles";
 import { LoaderImg, SongLink } from "./styles";
-import { useDispatch } from "react-redux";
-import { addSong } from "../../Redux/libraryActions";
+import { useDispatch, useSelector } from "react-redux";
+import { addSong } from "../../Redux/slices/librarySlice";
 
-
-const SearchResults = ({ artistId, onAddLibrary }) => {
-    const { albums, loading, error } = useFetchAlbums(artistId);
+const SearchResults = () => {
     const dispatch = useDispatch();
+    const { results, loading, error } = useSelector((state) => state.search);
 
     return (
         <>
-            <HeaderP $topSpace="6.5rem">Buscados recientemente</HeaderP>
+            <HeaderP $topSpace="6.5rem">Resultados de búsqueda</HeaderP>
             <SectionTopRecientes>
                 {error ? (
-                    <p>Error al cargar los resultados.</p>
-                ) : loading ? (<LoaderImg src="/assets/img/Loader.gif" alt="Loading" />) : albums.length > 0 ? (
-                    albums.map((album) => (
+                    <p style={{ color: 'red' }}>Error al cargar los resultados: {error}</p>
+                ) : loading ? (
+                    <LoaderImg src="/assets/img/Loader.gif" alt="Loading" />
+                ) : results && results.length > 0 ? (
+                    results.map((album) => (
                         <SongLink key={album.id || album.title} to={`/song/${album.id}`}>
                             <Songs
                                 title={album.title}
@@ -37,7 +37,7 @@ const SearchResults = ({ artistId, onAddLibrary }) => {
                         </SongLink>
                     ))
                 ) : (
-                    <p></p>
+                    <p style={{ color: 'gray' }}>No hay busqueda reciente</p>
                 )}
             </SectionTopRecientes>
         </>
