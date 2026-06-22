@@ -26,6 +26,27 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^react-router-dom$": "<rootDir>/node_modules/react-router-dom/dist/index.js",
+      "^react-router/dom$": "<rootDir>/node_modules/react-router/dist/development/dom-export.js",
+      "^react-router$": "<rootDir>/node_modules/react-router/dist/development/index.js"
+    },
+    "collectCoverageFrom": [
+      "src/components/**/*.{js,jsx}",
+      "src/Redux/**/*.{js,jsx}",
+      "src/App.js",
+      "!src/index.js",
+      "!src/Redux/libraryActions.js",
+      "!src/Redux/libraryReducer.js",
+      "!src/Redux/store.js",
+      "!src/Hooks/useFetchAlbums.js",
+      "!src/Hooks/useFetchArtist.js",
+      "!src/Hooks/useFetchSongs.js",
+      "!src/components/INFO-SONG/**",
+      "!src/components/SONG-DETAIL/**"
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -43,5 +64,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-router": "7.15.0"
   }
 }

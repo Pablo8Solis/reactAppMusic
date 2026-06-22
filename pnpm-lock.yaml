@@ -53,6 +53,10 @@ importers:
       web-vitals:
         specifier: ^2.1.4
         version: 2.1.4
+    devDependencies:
+      react-router:
+        specifier: 7.15.0
+        version: 7.15.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
 
 packages:
 

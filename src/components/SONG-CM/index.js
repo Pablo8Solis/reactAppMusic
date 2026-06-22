@@ -4,7 +4,9 @@ import { AddSongButton, SongCard, SongCardContent, SongCardImage, SongCardText }
 const Songs = ({title, artist, imgSrc, alt, onAdd, hideAddButton}) => {
     const [isAdded, setIsAdded] = React.useState(false);
 
-    const handleButtonClick = () => {
+    const handleButtonClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         if (onAdd) {
             onAdd();
         }
