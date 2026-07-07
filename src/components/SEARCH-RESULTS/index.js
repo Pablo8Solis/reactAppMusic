@@ -16,7 +16,7 @@ const SearchResults = () => {
                 {error ? (
                     <p style={{ color: 'red' }}>Error al cargar los resultados: {error}</p>
                 ) : loading ? (
-                    <LoaderImg src="/assets/img/Loader.gif" alt="Loading" />
+                    <LoaderImg src="/assets/img/loader.gif" alt="Loading" />
                 ) : results && results.length > 0 ? (
                     results.map((album) => (
                         <SongLink key={album.id || album.title} to={`/song/${album.id}`}>
