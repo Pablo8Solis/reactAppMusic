@@ -1,70 +1,144 @@
-# Getting Started with Create React App
+# 🎵 Apple Music Clone (React + Redux)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Un clon estético y funcional inspirado en **Apple Music**, construido utilizando **React**, **Redux Toolkit**, **Styled-Components** y con integración en tiempo real de la API de **Deezer**.
 
-## Available Scripts
+Este proyecto permite a los usuarios buscar álbumes, ver los detalles de las canciones dentro de cada álbum y gestionar una biblioteca personal de música de manera dinámica y moderna.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Características Clave
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **🔍 Búsqueda en Tiempo Real:** Barra de búsqueda dinámica vinculada a la API de Deezer. Busca álbumes instantáneamente conforme el usuario escribe.
+- **📚 Biblioteca Personal:** Agrega y elimina tus álbumes favoritos de tu sección de biblioteca en tiempo real usando un estado global persistente con Redux.
+- **📀 Detalle de Álbumes:** Vista dinámica (`/song/:id`) que carga de manera paralela la información detallada del álbum y la lista completa de pistas del mismo.
+- **🎨 Interfaz Premium & Oscura:** Diseño responsivo de alta calidad basado en la estética de Apple Music, con tema oscuro personalizado, transiciones suaves y micro-interacciones interactivas.
+- **⚡ Estado Predecible:** Manejo robusto del flujo de datos usando Redux Toolkit y operaciones asíncronas con `createAsyncThunk`.
+- **🧪 Pruebas Unitarias:** Cobertura de tests para componentes críticos usando `@testing-library/react` y `Jest`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🛠️ Stack Tecnológico
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Tecnología | Propósito |
+| :--- | :--- |
+| **React (v19)** | Biblioteca principal de UI. |
+| **Redux Toolkit** | Gestión de estado global de la aplicación (búsqueda y biblioteca). |
+| **React Router Dom (v7)** | Enrutamiento declarativo para navegación entre vistas y detalles. |
+| **Styled-Components** | Estilado modular utilizando CSS-in-JS con soporte para temas globales. |
+| **Axios** | Cliente HTTP para realizar peticiones eficientes a la API de Deezer. |
+| **Deezer API** | Fuente externa de datos musicales (álbumes, pistas y artistas). |
+| **Jest / RTL** | Pruebas de componentes y flujos de usuario. |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📂 Estructura del Proyecto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+El proyecto sigue una estructura limpia y modularizada por responsabilidades:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```text
+music-app/
+├── public/                 # Archivos públicos y assets
+├── src/
+│   ├── components/         # Componentes modulares y reutilizables
+│   │   ├── ASIDE-L/        # Barra lateral de navegación
+│   │   ├── GENEROS-/       # Tarjetas de exploración por género
+│   │   ├── HEADER/         # Cabecera principal y categorías
+│   │   ├── INFO-SONG/      # Información adicional
+│   │   ├── LIBRARY-SONGS/  # Sección de biblioteca personal
+│   │   ├── MIN-SECTIONS/   # Elementos reutilizables de menú
+│   │   ├── SEARCH-BAR/     # Input de búsqueda integrado con Redux
+│   │   ├── SEARCH-RESULTS/ # Resultados dinámicos de búsqueda
+│   │   ├── SONG-CM/        # Tarjeta reutilizable de Álbum/Canción (Song Card)
+│   │   └── SONG-DETAIL/    # Vista detallada de canciones por álbum (TrackList)
+│   ├── Hooks/              # Custom Hooks para llamadas de red (fetch)
+│   │   ├── useFetchAlbums.js
+│   │   ├── useFetchArtist.js
+│   │   └── useFetchSongs.js
+│   ├── Redux/              # Configuración del Store y Slices de Redux
+│   │   ├── slices/
+│   │   │   ├── librarySlice.js # Estado de la biblioteca personal
+│   │   │   └── searchSlice.js  # Estado de la consulta y resultados de búsqueda
+│   │   └── store.js        # Configuración global del configureStore
+│   ├── theme/              # Diseño de temas y estilos globales
+│   │   ├── index.js        # Tokens del tema (colores, fuentes)
+│   │   └── GlobalStyles.js # Reset y estilos globales (Styled-Components)
+│   ├── tests/              # Suite de pruebas unitarias
+│   │   ├── App.test.jsx
+│   │   ├── Header.test.jsx
+│   │   ├── Library.test.jsx
+│   │   ├── SearchBar.test.jsx
+│   │   └── SearchResults.test.jsx
+│   ├── App.js              # Enrutador principal y layout
+│   ├── index.js            # Punto de entrada de la aplicación
+│   └── main.css            # Estilos CSS generales
+├── package.json            # Configuración de dependencias y scripts
+└── README.md               # Este archivo de documentación
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ⚙️ Configuración e Instalación
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Requisitos Previos
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Tener instalado **Node.js** (versión 18 o superior recomendada).
+- Gestor de paquetes **npm** o **pnpm**.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Instrucciones de Clonado y Ejecución
 
-## Learn More
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/tu-usuario/music-App-react.git
+   cd music-App-react/music-app
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. **Instalar dependencias:**
+   ```bash
+   npm install
+   # o si usas pnpm
+   pnpm install
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Iniciar el servidor de desarrollo:**
+   ```bash
+   npm start
+   ```
+   La aplicación se abrirá automáticamente en tu navegador favorito en [http://localhost:3000](http://localhost:3000).
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🌐 Configuración de Proxy (CORS)
 
-### Analyzing the Bundle Size
+Dado que la API de Deezer bloquea llamadas cruzadas directas desde el navegador (CORS), la aplicación utiliza una propiedad proxy configurada dentro del archivo `package.json` para redirigir las solicitudes a través del servidor de desarrollo de React:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```json
+"proxy": "https://api.deezer.com"
+```
 
-### Making a Progressive Web App
+Esto permite consultar rutas locales como `/search/album?q=...` y que el servidor de desarrollo las delegue de forma segura a `https://api.deezer.com/search/album?q=...`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 🧪 Pruebas Unitarias
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+El proyecto viene integrado con un conjunto completo de pruebas unitarias para garantizar el correcto funcionamiento de los componentes y flujos:
 
-### Deployment
+Para ejecutar todas las pruebas en modo interactivo:
+```bash
+npm test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Cobertura de Pruebas
 
-### `npm run build` fails to minify
+La cobertura de tests está configurada en `package.json` para recolectar información sobre los siguientes componentes y archivos:
+- `src/components/**/*`
+- `src/Redux/**/*`
+- `src/App.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 💡 Futuras Mejoras
+
+- 🔊 **Reproductor de audio integrado:** Permitir escuchar el preview de 30 segundos que provee la API de Deezer directamente en la aplicación.
+- 🌙 **Cambio dinámico de temas:** Agregar soporte para alternar entre modo claro y oscuro.
+- 📱 **Soporte Offline:** Persistir los datos de la biblioteca personal en `localStorage` o utilizando Service Workers para soporte PWA.
